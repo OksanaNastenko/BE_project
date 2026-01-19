@@ -50,6 +50,7 @@ class UsersTests(TestCase):
 
     def test_get_users_has_correct_total(self):
         result = self.users_api.get_users()
+        self.assertGreater(result["total"], 0)
         self.assertLessEqual(len(result["data"]), result["total"])
 
     def test_get_users_contains_pagination_schema(self):
@@ -81,3 +82,4 @@ class UsersTests(TestCase):
         response_time_ms = (end - start) * 1000
 
         self.assertLess(response_time_ms, limit_ms)
+
